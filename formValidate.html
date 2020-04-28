@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Validating Forms with JS</title>
+	<style>
+		p    {color: red;
+			display: inline;
+		}
+		</style>
+</head>
+<body>
+<form action="processData.html" onsubmit="return validateData();">
+	<label for="userName">Enter Your Name</label>
+	<input type="text" id="userName" placeholder="Your Name"><p id="in1"></p><br>
+	
+	<label for="userAddress"> Enter Your Address</label>
+	<input type="text" id="userAddress" placeholder="Your Address"><p id="in2"></p><br>
+	
+	<label for="userPhone">Enter Your Phone number</label>
+	<input type="text" id="userPhone" placeholder="Your Phone"><p id="in3"></p><br>
+	
+	<label for="usermail"> Enter Your Email</label>
+	<input type="text" id="usermail" placeholder="Your Email"><p id="in4"></p><br>
+	
+	<input type="checkbox" id="check1" name="box1" value="agree" required>
+  		<label for="check1"> I agree to the T & C</label><br>
+	<input type="submit" value="REGISTER">
+</form>
+
+
+
+
+<script type="text/javascript">
+	function validateData(){
+		var userName = document.getElementById("userName");
+		var userAddress = document.getElementById("userAddress");
+		var userPhone = document.getElementById("userPhone");
+		if(userName.value == ""){
+			//alert("We don't like blank names...");
+			document.getElementById("in1").innerHTML = "We don't like blank names...";
+			//document.write("in1")="Hello World!";
+			userName.focus();
+			return false;
+		}
+		else if(!isNaN(userName.value)){
+			//alert("Names can't include digits");
+			document.getElementById("in1").innerHTML = "Names can't include digits";
+			userName.value = "";
+			userName.focus();
+			return false;
+		}
+		else if(!userAddress.value.length){
+			//alert("Please Enter the Address");
+			document.getElementById("in1").innerHTML = "";
+			document.getElementById("in2").innerHTML = "Please Enter the Address";
+			userAddress.focus();
+			return false;
+		}
+
+		else if(!userPhone.value.length){
+			//alert("Phone Number is required");
+			document.getElementById("in1").innerHTML = "";
+			document.getElementById("in2").innerHTML = "";
+			document.getElementById("in3").innerHTML = "Phone Number is required";
+			userPhone.focus();
+			return false;
+		}
+		else if(isNaN(userPhone.value)){
+			//alert("Please enter the correct phone number");
+			document.getElementById("in1").innerHTML = "";
+			document.getElementById("in2").innerHTML = "";
+			document.getElementById("in3").innerHTML = "Please enter the correct phone number";
+			userPhone.value = "";
+			userPhone.focus();
+			return false;
+		}
+		else if(!usermail.value.length){
+			//alert("Email id is required");
+			document.getElementById("in1").innerHTML = "";
+			document.getElementById("in2").innerHTML = "";
+			document.getElementById("in3").innerHTML = "";
+			document.getElementById("in4").innerHTML = "Email id is required";
+			userPhone.focus();
+			return false;
+		}
+	
+		document.getElementById("in1").innerHTML = "";
+		document.getElementById("in2").innerHTML = "";
+		document.getElementById("in3").innerHTML = "";
+		document.getElementById("in4").innerHTML = "";
+		return true;
+
+
+	}
+</script>
+
+</body>
+</html>
